@@ -30,5 +30,3 @@ def lyric_tokenizer(doc):
     nlp.add_pipe(lemmatizer, name="lemmatizer", after="ner")
     nlp.add_pipe(remove_stopwords, name="stopwords", last=True)
     return nlp(doc)
-
-print(lyric_tokenizer('test this shit'))
