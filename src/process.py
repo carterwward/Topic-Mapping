@@ -25,7 +25,12 @@ def remove_stopwords(doc):
 def lyric_tokenizer(doc):
     nlp = spacy.load('en_core_web_sm')
     stops = ["yeah", '\n', 'intro', 'hook', 'verse', 'yes', 'oh', 'chorus', 'like', 'hey', 'okay',
-    'uh', 'blah', 'ooooooh', 'woah', 'la', 'aight', 'whoa', 'til', 'o', 'huh', 'ya']
+    'uh', 'blah', 'ooooooh', 'woah', 'la', 'aight', 'whoa', 'til', 'o', 'huh', 'ya', 'ohh', 'yea', 'oooh',
+    'tryna', 'cause', 'igh', 'da', 'ha', 'woo', 'u', 'mo', 'mac', 'mmm', 'bah', 'bam', 'doo', 'dat', 'ah'
+    , 'n', 'm', 'yo', 'na', 'i\'mma', 'ayy', 'uhh', 'nas', 'hmm', 'w', 'wit', 'd', 'bein', 'bout', 'ay',
+     'g', 'lemme', 'i’mma', 's', 'u', 't', 'fu', 'c', 'ga', 'mm',  'ooo', 'haha', 'woo', 'p', 'hah', 'mo'
+     , 'ba', 'b', 'en', 'h', 'cuz', 'dat', 'yuh', 'da', 'na', 'ooh', 'ooooh', 'l', 'bo', 'andre', 'shh'
+     , 'y', 'till', 'e', 'aw']
     nlp.Defaults.stop_words.update(stops)
     nlp.add_pipe(lemmatizer, name="lemmatizer", after="ner")
     nlp.add_pipe(remove_stopwords, name="stopwords", last=True)
