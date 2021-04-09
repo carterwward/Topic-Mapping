@@ -3,6 +3,7 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 import string
 import re
+import json
 cred = credentials.Certificate('firebase_cred.json')
 firebase_admin.initialize_app(cred)
 db = firestore.client()
@@ -63,3 +64,20 @@ def read_all_discogs():
                 print('duplicate', doc_obj.id)
 
     return collection_dict
+    
+def update_discog(artist_name, field_name, value):
+    # query artist collection
+    artist_name = artist_name.lower()
+    artist_dict = db.collection(artist_name)
+    docs =  artist_dict.stream()
+    #iterate over collection
+    #for each song, add new field (field name and value)
+    for doc in docs:
+        doc_ref = db.collection(artist_name).document(doc.id)
+        doc_ref.set({
+        field_name: value
+        }, merge=True)
+
+
+
+
