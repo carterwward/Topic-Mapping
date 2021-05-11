@@ -20,7 +20,7 @@ ETA = 0.4
 # 'Adding Gradient Noise Improves Learning for Very Deep Networks'
 
 
-def train(data, unigram_distribution, word_vectors,
+def train(data, unigram_distribution, word_vectors, write_path,
           doc_weights_init=None, n_topics=25,
           batch_size=4096, n_epochs=200,
           lambda_const=100.0, num_sampled=15,
@@ -49,7 +49,7 @@ def train(data, unigram_distribution, word_vectors,
         save_every: An integer, save the model from time to time.
         grad_clip: A float number, clip gradients by absolute value.
     """
-    print("HI")
+    print("HI", n_topics)
 
     n_windows = len(data)
     n_documents = len(np.unique(data[:, 0]))
@@ -148,7 +148,7 @@ def train(data, unigram_distribution, word_vectors,
             print('{0:.2f} {1:.2f}'.format(*losses[-1][1:]))
             if epoch % save_every == 0:
                 print('\nsaving!\n')
-                torch.save(model.state_dict(), str(epoch) + '_epoch_model_state.pytorch')
+                torch.save(model.state_dict(), write_path+str(epoch) + '_epoch_model_state.pytorch')
 
     except (KeyboardInterrupt, SystemExit):
         print(' Interruption detected, exiting the program...')
