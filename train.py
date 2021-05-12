@@ -6,7 +6,7 @@ from src.utils.training import train
 
 
 def main():
-    path_prefix = "models/lyrics/"
+    path_prefix = "models/articles/"
     data = np.load(path_prefix+'data.npy')
     unigram_distribution = np.load(path_prefix+'unigram_distribution.npy')
     word_vectors = np.load(path_prefix+'word_vectors.npy')
@@ -24,8 +24,8 @@ def main():
 
     train(
         data, unigram_distribution, word_vectors, path_prefix+"lda2vec_models/",
-        doc_weights_init, n_topics=10,
-        batch_size=1024*7, n_epochs=80,
+        doc_weights_init, n_topics=25,
+        batch_size=1024*7, n_epochs=40,
         lambda_const=500.0, num_sampled=15,
         topics_weight_decay=1e-2,
         topics_lr=1e-3, doc_weights_lr=1e-3, word_vecs_lr=1e-3,

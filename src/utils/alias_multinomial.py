@@ -54,6 +54,7 @@ class AliasMultinomial(object):
         r = torch.LongTensor(np.random.randint(0, K, size=N))
         q = self.q.index_select(0, r)
         j = self.J.index_select(0, r)
+        q[q > 1] = 1
         b = torch.bernoulli(q)
         oq = r.mul(b.long())
         oj = j.mul((1 - b).long())

@@ -192,7 +192,6 @@ class topic_embedding(nn.Module):
         Returns:
             A float tensor of shape [batch_size, embedding_dim].
         """
-
         doc_probs = F.softmax(doc_weights)
 
         # shape: [batch_size, n_topics, 1]
